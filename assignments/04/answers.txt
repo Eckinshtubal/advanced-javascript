@@ -1,0 +1,5 @@
+1. http://pokeapi.co/api/v2/pokemon/charmander/
+2. base-experience - The base experience gained for defeating this pokemon - integer
+   height - The height of this pokemon - integer
+   species - The species this Pokemon belongs to - NamedAPIResource (PokemonSpecies)
+3. http://pokeapi.co/media/sprites/pokemon/shiny/200.png
