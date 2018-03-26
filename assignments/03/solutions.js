@@ -1,6 +1,8 @@
 function answer1() {
   /* Replace 'undefined' with some JSX */
-  return undefined;
+  return (
+    <h1>Hello World!</h1>
+    );
 }
 
 
@@ -10,7 +12,7 @@ function answer2() {
       return (
         <div>
           a + b =
-          {this.props.four + this.props.seven}
+          {this.props.a + this.props.b}
         </div>
       );
     }
@@ -28,8 +30,7 @@ function answer3() {
       <div>
         {someProps.one}
         , {someProps.two}
-        ,
-        is a sort of fun game!
+        , {someProps.three} is a sort of fun game!
       </div>
     );
   }
@@ -38,6 +39,7 @@ function answer3() {
     <AddAPropToMe
       one={'Tic'}
       two={'tac'}
+      three={'toe'}
     />
   );
 }
@@ -47,15 +49,20 @@ function answer4() {
   class InputComponent extends React.Component {
     constructor(props) {
       super(props);
-
+      this.newInput = this.newInput.bind(this);
       this.state = {
         userInput: ''
-      };
+      };      
     }
+
+    newInput(e){
+      this.setState({userInput: e.target.value});
+    }
+
     render() {
       return (
         <div>
-          <input/>
+          <input onChange={this.newInput}/>
           <p>
             The user typed `{this.state.userInput}`
           </p>
@@ -76,9 +83,18 @@ function answer5() {
         count: 0
       };
     }
+
     componentDidMount() {
       var counter = function() {
-        console.log(this.state.count);
+        if(this.state.count == 3){
+          console.log(this.state.count + ' ...');
+        }
+        else if(this.state.count == 2){
+          console.log(this.state.count + ' ..');
+        }
+        else{
+          console.log(this.state.count + ' .');
+        }
         this.setState({
           count: ((this.state.count + 1) % 3) + 1
         });
@@ -86,6 +102,7 @@ function answer5() {
 
       setInterval(counter, 1000);
     }
+
     render() {
       var dots = '...';
 
@@ -101,7 +118,7 @@ function answer5() {
 }
 
 function answer6() {
-  function convertMeToArrowSyntax(a, b, c) {
+  let convertMeToArrowSyntax = (a, b, c) => {
     return a * (b - c);
   }
 
@@ -111,15 +128,14 @@ function answer6() {
 function answer7() {
   var myObject = {
     x: 8,
-    y: 3
+    y: 3,
+    addXtoY: function() {
+      return this.x + this.y;
+    }
   };
 
-  function addXtoY() {
-    return this.x + this.y;
-  }
-
   try {
-    return addXtoY();
+    return myObject.addXtoY();
   } catch(e) {
     return String(e);
   }
@@ -142,7 +158,9 @@ function answer8() {
     );
   }
 
+  let newFunction = myObject.addXtoY.bind(myObject);
+
   return (
-    <Component callback={myObject.addXtoY}/>
+    <Component callback={newFunction}/>
   );
 }
