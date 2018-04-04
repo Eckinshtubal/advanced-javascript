@@ -1,4 +1,38 @@
-.example-style {
+body {
   background-color: white;
   color: black;
+  font-family: helvetica, arial, sans-serif;
+  text-align: center;
+}
+
+h1{
+	color: red;
+	text-transform: uppercase;
+}
+
+button{
+	display: block;
+	margin: 10px auto;
+}
+
+.sprites{
+	list-style-type: none;
+	padding: 0;
+	width: 100%;
+}
+
+.sprites li{
+	display: inline-block;
+	margin: 0 auto;
+	width: 100px;
+}
+
+.stats{
+	list-style-type: none;
+	padding: 0;
+	width: 100%;
+}
+
+.stats li{
+
 }
